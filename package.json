@@ -1,0 +1,27 @@
+{
+  "name": "goose-bot",
+  "version": "1.0.0",
+  "description": "Before starting please fix the following",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TestersQTs/goose-bot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TestersQTs/goose-bot/issues"
+  },
+  "homepage": "https://github.com/TestersQTs/goose-bot#readme",
+  "dependencies": {
+    "ascii-table": "0.0.9",
+    "cli-color": "^2.0.0",
+    "discord.js": "^12.2.0",
+    "dotenv": "^8.2.0",
+    "mongoose": "^5.9.20"
+  }
+}
