@@ -11,7 +11,7 @@
     "url": "git+https://github.com/TestersQTs/goose-bot.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "TestersQTs",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/TestersQTs/goose-bot/issues"
@@ -23,5 +23,6 @@
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
     "mongoose": "^5.9.20"
-  }
+  },
+  "devDependencies": {}
 }
