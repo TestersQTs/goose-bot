@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 
 const fs = require("fs");
 const phrases = require("../goosePhrases.json");
+const config = require("../gooseSettings.json");
 
 module.exports = async (client, message) => {
 
@@ -37,15 +38,19 @@ module.exports = async (client, message) => {
       /*
       * Pre-specified events. Might make this editable by the guild Administrators
       */
-     var chance = Math.floor(Math.random() * 5) + 1;
-     var chanceActual = Math.floor(Math.random() * 5) + 1;
-     var events = Math.floor(Math.random() * 5) + 1;
+     var random = Math.random();
 
-      if (chance === chanceActual && events === 1) message.channel.send(phrases["messageEvents"]["event1"]);
-      if (chance === chanceActual && events === 2) message.channel.send(phrases["messageEvents"]["event2"]);
-      if (chance === chanceActual && events === 3) message.channel.send(phrases["messageEvents"]["event3"]);
-      if (chance === chanceActual && events === 4) message.channel.send(phrases["messageEvents"]["event4"]);
-      if (chance === chanceActual && events === 5) message.channel.send(phrases["messageEvents"]["event5"]);
+     console.log(random);
+
+     if (random <= config["events"]["chatMessage"]) {
+       var event = Math.floor(Math.random() * 5) + 1;
+
+       if (event == 1) { message.channel.send(phrases["messageEvents"]["event1"]); return; }
+       else if (event == 2) { message.channel.send(phrases["messageEvents"]["event2"]); return; }
+       else if (event == 3) { message.channel.send(phrases["messageEvents"]["event3"]); return; }
+       else if (event == 4) { message.channel.send(phrases["messageEvents"]["event4"]); return; }
+       else if (event == 5) { message.channel.send(phrases["messageEvents"]["event5"]); return; }
+     }
     }
   );
 };
