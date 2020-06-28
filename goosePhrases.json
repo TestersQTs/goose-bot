@@ -1,10 +1,23 @@
 {
-    "messageEvents": {
-        "event1": "I am a Goose ***HONK***",
-        "event2": "***HONK***  You're euwgly",
-        "event3": "***HJOONG***",
-        "event4": "esooG a ma I ***KNOH***",
-        "event5": "3... 2... 1... ***HONK***",
-        "eventDelete": "***HJOONK***  Bad message *honk*"
-    }
+  "messageEvents": {
+    "eventMessage": [
+      "I am a Goose ***HONK***",
+      "***HONK***  You're euwgly",
+      "***HJOONG***",
+      "esooG a ma I ***KNOH***",
+      "3... 2... 1... ***HONK***",
+      "honk",
+      "HOONK",
+      "HONK",
+      "hjök",
+      "honk honk",
+      "hooooonk",
+      "honk *hello*",
+      "honk *am goose*",
+      "honk *my feathers is white*",
+      "honk *am beautiful?*",
+      "honk *goose noises*"
+    ],
+    "eventDelete": "***HJOONK***  Bad message *honk*"
+  }
 }
