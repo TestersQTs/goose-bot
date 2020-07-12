@@ -1,0 +1,26 @@
+plugins {
+    id'java'
+    id'application'
+    id'com.github.johnrengelman.shadow' version '4.0.4'
+}
+
+mainClassName = 'us.TestersQTs.GooseBot.Bot'
+
+version '1.0'
+
+sourceCompatibility = 1.8
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile group: 'net.dv8tion', name: 'JDA', version: '4.2.0_177'
+    compile group: 'com.jagrosh', name: 'jda-utilities', version: '3.0.4'
+    compile group: 'me.duncte123', name: 'botCommons', version: '1.0.88'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+    compile 'io.github.cdimascio:java-dotenv:5.2.1'
+
+}
+
+compileJava.options.encoding = 'UTF-8'
