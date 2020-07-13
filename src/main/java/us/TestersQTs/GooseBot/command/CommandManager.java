@@ -4,6 +4,7 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import us.TestersQTs.GooseBot.Config;
+import us.TestersQTs.GooseBot.command.commands.InfoCommand;
 import us.TestersQTs.GooseBot.command.commands.PingCommand;
 
 import javax.annotation.Nullable;
@@ -19,6 +20,7 @@ public class CommandManager {
 
     public CommandManager() {
         addCommand(new PingCommand());
+        addCommand(new InfoCommand());
     }
 
     private void addCommand(ICommand command) {

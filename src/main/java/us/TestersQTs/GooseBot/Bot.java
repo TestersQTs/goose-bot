@@ -14,7 +14,7 @@ public class Bot {
                 .build();
     }
 
-    public static void main(String args[]) throws LoginException {
+    public static void main(String[] args) throws LoginException {
         new Bot();
     }
 }

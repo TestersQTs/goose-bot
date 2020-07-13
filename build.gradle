@@ -20,7 +20,7 @@ dependencies {
     compile group: 'me.duncte123', name: 'botCommons', version: '1.0.88'
     compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
     compile 'io.github.cdimascio:java-dotenv:5.2.1'
-
+    compile group: 'com.google.code.gson', name: 'gson', version: '2.7'
 }
 
 compileJava.options.encoding = 'UTF-8'
