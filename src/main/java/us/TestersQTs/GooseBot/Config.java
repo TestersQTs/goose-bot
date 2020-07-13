@@ -10,4 +10,3 @@ public class Config {
         return dotenv.get(key.toUpperCase());
     }
 }
-

@@ -1,6 +1,8 @@
 package us.TestersQTs.GooseBot.command;
 
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import us.TestersQTs.GooseBot.Config;
 import us.TestersQTs.GooseBot.command.commands.PingCommand;
 
@@ -13,6 +15,7 @@ import java.util.regex.Pattern;
 public class CommandManager {
 
     private final List<ICommand> commands = new ArrayList<>();
+    private static final Logger LOGGER = LoggerFactory.getLogger(CommandManager.class);
 
     public CommandManager() {
         addCommand(new PingCommand());
@@ -22,7 +25,7 @@ public class CommandManager {
         boolean nameFound = this.commands.stream().anyMatch((it) -> it.getName().equalsIgnoreCase(command.getName()));
 
         if (nameFound) {
-            throw new IllegalArgumentException("Command with this name already exists!");
+            LOGGER.error("Command '{}' declared multiple times!", command.getName());
         }
 
         commands.add(command);
