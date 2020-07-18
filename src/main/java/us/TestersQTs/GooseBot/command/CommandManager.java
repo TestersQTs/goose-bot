@@ -6,6 +6,8 @@ import org.slf4j.LoggerFactory;
 import us.TestersQTs.GooseBot.Config;
 import us.TestersQTs.GooseBot.command.commands.InfoCommand;
 import us.TestersQTs.GooseBot.command.commands.PingCommand;
+import us.TestersQTs.GooseBot.command.commands.PrefixCommand;
+import us.TestersQTs.GooseBot.database.DatabaseManager;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -21,6 +23,7 @@ public class CommandManager {
     public CommandManager() {
         addCommand(new PingCommand());
         addCommand(new InfoCommand());
+        addCommand(new PrefixCommand());
     }
 
     private void addCommand(ICommand command) {
@@ -48,7 +51,7 @@ public class CommandManager {
 
     public void handle(GuildMessageReceivedEvent event) {
         String[] split = event.getMessage().getContentRaw()
-                .replaceFirst("(?i)" + Pattern.quote(Config.get("PREFIX")), "")
+                .replaceFirst("(?i)" + Pattern.quote(DatabaseManager.getPrefix(event.getGuild().getIdLong())), "")
                 .split("\\s+");
 
         String invoke = split[0].toLowerCase();

@@ -19,5 +19,12 @@
       "honk *goose noises*"
     ],
     "eventDelete": "***HJOONK***  Bad message *honk*"
+  },
+  "roleEvent" : {
+    "roleRename": [
+      "HONK",
+      "HJOONK",
+      "<$rolename>"
+    ]
   }
 }
