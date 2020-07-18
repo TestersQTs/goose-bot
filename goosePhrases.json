@@ -16,9 +16,21 @@
       "honk *am goose*",
       "honk *my feathers is white*",
       "honk *am beautiful?*",
-      "honk *goose noises*"
+      "honk *goose noises*",
+      "honkk",
+      "***hooonkkkk***",
+      "***honk**",
+      "**Honk honk**",
+      "honk honk am goose",
+      "*honk honk am goose*"
+
     ],
-    "eventDelete": "***HJOONK***  Bad message *honk*"
+    "eventDelete": [
+      "***HJOONK***  Bad message *honk*",
+      "MESS WITH THE HONK YOU GET HE BONK",
+      "**MESS WITH THE HONK YOU GET HE BONK**",
+      "*MESS WITH THE HONK YOU GET HE BONK*"
+    ]
   },
   "roleEvent" : {
     "roleRename": [

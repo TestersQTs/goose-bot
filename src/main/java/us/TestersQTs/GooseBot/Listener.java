@@ -1,5 +1,7 @@
 package us.TestersQTs.GooseBot;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import net.dv8tion.jda.api.entities.Role;
@@ -12,6 +14,7 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.events.role.RoleCreateEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.slf4j.Logger;
+import org.json.JSONArray;
 import org.slf4j.LoggerFactory;
 import us.TestersQTs.GooseBot.command.CommandManager;
 import us.TestersQTs.GooseBot.database.DatabaseManager;
@@ -59,6 +62,7 @@ public class Listener extends ListenerAdapter {
 
         double random = new Random().nextDouble();
         int phrase = new Random().nextInt(16);
+
 
         if (random <= EventChances.EVENT_MESSAGE_DELETE) {
             event.getMessage().delete().queue();
