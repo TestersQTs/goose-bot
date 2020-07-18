@@ -61,19 +61,22 @@ public class Listener extends ListenerAdapter {
         }
 
         double random = new Random().nextDouble();
-        int phrase = new Random().nextInt(16);
 
 
         if (random <= EventChances.EVENT_MESSAGE_DELETE) {
+
+            JsonArray phraseArray = phrases.get("messageEvent").getAsJsonObject().get("eventDelete").getAsJsonArray();
+
             event.getMessage().delete().queue();
-            event.getChannel().sendMessage(String.valueOf(phrases.get("messageEvent").getAsJsonObject().get("eventDelete")
-                    .getAsJsonPrimitive()).replaceAll("(\")", "")).queue();
+            event.getChannel().sendMessage(phraseArray.get(new Random().nextInt(phraseArray.size())).toString().replaceAll("(\")", "")).queue();
             return;
         }
 
         if (random <= EventChances.EVENT_MESSAGE_SEND) {
-            event.getChannel().sendMessage(String.valueOf(phrases.get("messageEvent").getAsJsonObject().get("eventMessage")
-                    .getAsJsonArray().get(phrase)).replaceAll("(\")", "")).queue();
+
+            JsonArray phraseArray = phrases.get("messageEvent").getAsJsonObject().get("eventMessage").getAsJsonArray();
+
+            event.getChannel().sendMessage(phraseArray.get(new Random().nextInt(phraseArray.size())).toString().replaceAll("(\")", "")).queue();
         }
     }
 
@@ -83,7 +86,6 @@ public class Listener extends ListenerAdapter {
 
         if (random <= EventChances.EVENT_USER_VC_DISCONNECT) {
             event.getGuild().kickVoiceMember(event.getMember()).queue();
-            return;
         }
     }
 
