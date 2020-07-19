@@ -22,7 +22,7 @@ public class ResetCommand implements ICommand {
 
         removeGuildFromDatabase(Long.parseLong(context.getGuild().getId()));
         addGuildToDatabase(Long.parseLong(context.getGuild().getId()), context.getGuild().getName(), "!");
-        context.getChannel().sendMessageFormat("**All** configurations have been reset now.").queue();
+        context.getChannel().sendMessageFormat("All configurations have been reset now.").queue();
 
     }
 

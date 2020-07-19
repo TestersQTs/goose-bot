@@ -28,10 +28,12 @@ public class Listener extends ListenerAdapter {
     private final CommandManager manager = new CommandManager();
 
     JsonObject phrases;
+    JsonObject emotes;
 
     {
         try {
             phrases = new JsonParser().parse(new FileReader("goosePhrases.json")).getAsJsonObject();
+            emotes = new JsonParser().parse(new FileReader("gooseEmotes.json")).getAsJsonObject();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -76,6 +78,15 @@ public class Listener extends ListenerAdapter {
 
             event.getChannel().sendMessage(phraseArray.get(new Random().nextInt(phraseArray.size())).toString().replaceAll("(\")", "")).queue();
         }
+
+        if (random <= DatabaseManager.getEventChance(event.getGuild().getIdLong(), "EVENT_MESSAGE_REACT")) {
+
+            JsonArray phraseArray = emotes.get("emotes").getAsJsonObject().get("eventReaction").getAsJsonArray();
+
+            event.getMessage().addReaction(phraseArray.get(new Random().nextInt(phraseArray.size())).toString().replaceAll("(\")", "")).queue();
+
+        }
+
     }
 
     @Override

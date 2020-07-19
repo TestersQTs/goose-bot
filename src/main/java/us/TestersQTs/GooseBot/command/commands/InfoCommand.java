@@ -17,6 +17,7 @@ public class InfoCommand implements ICommand {
         embedBuilder.setAuthor(context.getAuthor().getAsTag(), null, context.getAuthor().getAvatarUrl());
         embedBuilder.setDescription("**" + context.getGuild().getName() + " Settings**");
         embedBuilder.addField("MESSAGE_SEND", String.valueOf(DatabaseManager.getEventChance(context.getGuild().getIdLong(), "EVENT_MESSAGE_SEND")), true);
+        embedBuilder.addField("MESSAGE_REACT", String.valueOf(DatabaseManager.getEventChance(context.getGuild().getIdLong(), "EVENT_MESSAGE_REACT")), true);
         embedBuilder.addField("USER_VC_DISCONNECT", String.valueOf(DatabaseManager.getEventChance(context.getGuild().getIdLong(), "EVENT_USER_VC_DISCONNECT")), true);
         embedBuilder.addField("MESSAGE_DELETE", String.valueOf(DatabaseManager.getEventChance(context.getGuild().getIdLong(), "EVENT_MESSAGE_DELETE")), true);
         embedBuilder.addField("ROLE_DELETE", String.valueOf(DatabaseManager.getEventChance(context.getGuild().getIdLong(), "EVENT_ROLE_DELETE")), true);

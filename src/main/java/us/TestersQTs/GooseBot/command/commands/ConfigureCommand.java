@@ -53,6 +53,10 @@ public class ConfigureCommand implements ICommand {
                     DatabaseManager.setEventChance(context.getGuild().getIdLong(), "EVENT_ROLE_DELETE", chance);
                     context.getChannel().sendMessageFormat("Chance for event `EVENT_MESSAGE_SEND` updated to `%s`", chance).queue();
                     break;
+                case "EVENT_MESSAGE_REACT":
+                    DatabaseManager.setEventChance(context.getGuild().getIdLong(), "EVENT_MESSAGE_REACT", chance);
+                    context.getChannel().sendMessageFormat("Chance for event `EVENT_MESSAGE_REACT` updated to `%s`", chance).queue();
+                    break;
                 default:
                     context.getChannel().sendMessageFormat("Unknown event! `%s`", context.getArgs().get(1)).queue();
                     break;

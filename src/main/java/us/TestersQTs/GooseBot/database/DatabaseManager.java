@@ -38,9 +38,11 @@ public class DatabaseManager {
         MongoCollection settings = mongoDatabase.getCollection("config");
 
         docSettings.append("EVENT_MESSAGE_SEND", 0.15);
+        docSettings.append("EVENT_MESSAGE_REACT", 0.33);
         docSettings.append("EVENT_USER_VC_DISCONNECT", 0.35);
         docSettings.append("EVENT_MESSAGE_DELETE", 0.05);
         docSettings.append("EVENT_ROLE_DELETE", 0.33);
+
 
         settings.insertOne(docSettings);
     }
