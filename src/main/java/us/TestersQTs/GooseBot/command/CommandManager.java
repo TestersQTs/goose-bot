@@ -4,10 +4,7 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import us.TestersQTs.GooseBot.Config;
-import us.TestersQTs.GooseBot.command.commands.ConfigureCommand;
-import us.TestersQTs.GooseBot.command.commands.InfoCommand;
-import us.TestersQTs.GooseBot.command.commands.PingCommand;
-import us.TestersQTs.GooseBot.command.commands.PrefixCommand;
+import us.TestersQTs.GooseBot.command.commands.*;
 import us.TestersQTs.GooseBot.database.DatabaseManager;
 
 import javax.annotation.Nullable;
@@ -26,6 +23,8 @@ public class CommandManager {
         addCommand(new InfoCommand());
         addCommand(new PrefixCommand());
         addCommand(new ConfigureCommand());
+        addCommand(new HelpCommand());
+        addCommand(new ResetCommand());
     }
 
     private void addCommand(ICommand command) {
