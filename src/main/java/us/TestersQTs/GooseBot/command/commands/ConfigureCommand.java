@@ -26,7 +26,15 @@ public class ConfigureCommand implements ICommand {
                 return;
             }
 
-            double chance = Double.parseDouble(context.getArgs().get(2));
+            double chance;
+
+            try{
+                chance = Double.parseDouble(context.getArgs().get(2));
+
+            }catch (NumberFormatException e){
+                context.getChannel().sendMessageFormat("Chance must be double! At most 1.0").queue();
+                return;
+            }
 
             switch (context.getArgs().get(1)) {
                 case "EVENT_MESSAGE_SEND":
