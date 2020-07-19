@@ -1,7 +1,6 @@
 package us.TestersQTs.GooseBot;
 
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import net.dv8tion.jda.api.entities.Role;
@@ -14,7 +13,6 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.events.role.RoleCreateEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.slf4j.Logger;
-import org.json.JSONArray;
 import org.slf4j.LoggerFactory;
 import us.TestersQTs.GooseBot.command.CommandManager;
 import us.TestersQTs.GooseBot.database.DatabaseManager;
@@ -63,7 +61,7 @@ public class Listener extends ListenerAdapter {
         double random = new Random().nextDouble();
 
 
-        if (random <= EventChances.EVENT_MESSAGE_DELETE) {
+        if (random <= DatabaseManager.getEventChance(event.getGuild().getIdLong(), "EVENT_MESSAGE_DELETE")) {
 
             JsonArray phraseArray = phrases.get("messageEvent").getAsJsonObject().get("eventDelete").getAsJsonArray();
 
@@ -72,7 +70,7 @@ public class Listener extends ListenerAdapter {
             return;
         }
 
-        if (random <= EventChances.EVENT_MESSAGE_SEND) {
+        if (random <= DatabaseManager.getEventChance(event.getGuild().getIdLong(), "EVENT_MESSAGE_SEND")) {
 
             JsonArray phraseArray = phrases.get("messageEvent").getAsJsonObject().get("eventMessage").getAsJsonArray();
 
@@ -84,7 +82,7 @@ public class Listener extends ListenerAdapter {
     public void onGuildVoiceJoin(@Nonnull GuildVoiceJoinEvent event) {
         double random = new Random().nextDouble();
 
-        if (random <= EventChances.EVENT_USER_VC_DISCONNECT) {
+        if (random <= DatabaseManager.getEventChance(event.getGuild().getIdLong(), "EVENT_USER_VC_DISCONNECT")) {
             event.getGuild().kickVoiceMember(event.getMember()).queue();
         }
     }
@@ -95,7 +93,7 @@ public class Listener extends ListenerAdapter {
 
         double random = new Random().nextDouble();
 
-        if (random <= EventChances.EVENT_ROLE_DELETE) {
+        if (random <= DatabaseManager.getEventChance(event.getGuild().getIdLong(), "EVENT_ROLE_DELETE")) {
             role.delete().queue();
         }
     }

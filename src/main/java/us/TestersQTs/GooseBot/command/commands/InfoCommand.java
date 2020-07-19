@@ -16,11 +16,10 @@ public class InfoCommand implements ICommand {
         embedBuilder.setColor(Color.RED);
         embedBuilder.setAuthor(context.getAuthor().getAsTag(), null, context.getAuthor().getAvatarUrl());
         embedBuilder.setDescription("**" + context.getGuild().getName() + " Settings**");
-        embedBuilder.addField("MESSAGE_SEND", "0.20 (20%)", true);
-        embedBuilder.addField("USER_VC_DISCONNECT", "0.35 (35%)", true);
-        embedBuilder.addField("MESSAGE_DELETE", "0.05 (5%)", true);
-        embedBuilder.addField("ROLE_RENAME", "0.5 (50%)", true);
-        embedBuilder.addField("ROLE_DELETE", "0.33 (33%)", true);
+        embedBuilder.addField("MESSAGE_SEND", String.valueOf(DatabaseManager.getEventChance(context.getGuild().getIdLong(), "EVENT_MESSAGE_SEND")), true);
+        embedBuilder.addField("USER_VC_DISCONNECT", String.valueOf(DatabaseManager.getEventChance(context.getGuild().getIdLong(), "EVENT_USER_VC_DISCONNECT")), true);
+        embedBuilder.addField("MESSAGE_DELETE", String.valueOf(DatabaseManager.getEventChance(context.getGuild().getIdLong(), "EVENT_MESSAGE_DELETE")), true);
+        embedBuilder.addField("ROLE_DELETE", String.valueOf(DatabaseManager.getEventChance(context.getGuild().getIdLong(), "EVENT_ROLE_DELETE")), true);
         embedBuilder.setFooter("Requested by: " + context.getAuthor().getAsTag());
         embedBuilder.setTimestamp(Instant.now());
 

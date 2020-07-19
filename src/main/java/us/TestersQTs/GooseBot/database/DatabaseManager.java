@@ -1,36 +1,63 @@
 package us.TestersQTs.GooseBot.database;
 
-import com.mongodb.client.*;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import us.TestersQTs.GooseBot.Config;
 
-import static com.mongodb.client.model.Filters.and;
+import javax.annotation.Nonnull;
+
 import static com.mongodb.client.model.Filters.eq;
-import static com.mongodb.client.model.Projections.*;
 
 public class DatabaseManager {
 
     private static MongoClient mongoClient;
     private static MongoDatabase mongoDatabase;
 
-    public static void addGuildToDatabase(long guildId, String guildName, String prefix) {
-        Document document = new Document("guildId", guildId);
-        MongoCollection collection = mongoDatabase.getCollection("guilds");
+    public static void addGuildToDatabase(@Nonnull long guildId, @Nonnull String guildName, @Nonnull String prefix) {
 
-        document.append("guildName", guildName);
-        document.append("guildPrefix", prefix);
+        /**
+         * Guild settings get saved first. (guildId, prefix etc)
+         */
 
-        collection.insertOne(document);
+        Document docGuilds = new Document("guildId", guildId);
+        MongoCollection guilds = mongoDatabase.getCollection("guilds");
+
+        docGuilds.append("guildName", guildName);
+        docGuilds.append("guildPrefix", prefix);
+
+        guilds.insertOne(docGuilds);
+
+        /**
+         * Event changes get created.
+         */
+
+        Document docSettings = new Document("guildId", guildId);
+        MongoCollection settings = mongoDatabase.getCollection("config");
+
+        docSettings.append("EVENT_MESSAGE_SEND", 0.15);
+        docSettings.append("EVENT_USER_VC_DISCONNECT", 0.35);
+        docSettings.append("EVENT_MESSAGE_DELETE", 0.05);
+        docSettings.append("EVENT_ROLE_DELETE", 0.33);
+
+        settings.insertOne(docSettings);
     }
 
     public static void removeGuildFromDatabase(long guildId) {
-        MongoCollection collection = mongoDatabase.getCollection("guilds");
-        Document document = (Document) collection.find(eq("guildId", guildId)).first();
+        MongoCollection guilds = mongoDatabase.getCollection("guilds");
+        Document docGuilds = (Document) guilds.find(eq("guildId", guildId)).first();
 
-        collection.deleteOne(document);
+        guilds.deleteOne(docGuilds);
+
+        MongoCollection settings = mongoDatabase.getCollection("config");
+        Document docSettings = (Document) settings.find(eq("guildId", guildId)).first();
+
+        settings.deleteOne(docSettings);
     }
 
-    public static void updatePrefix(long guildId, String prefix) {
+    public static void updatePrefix(long guildId, @Nonnull String prefix) {
         MongoCollection collection = mongoDatabase.getCollection("guilds");
         collection.updateOne(eq("guildId", guildId), new Document("$set", new Document("guildPrefix", prefix)));
     }
@@ -40,6 +67,18 @@ public class DatabaseManager {
         Document document = (Document) collection.find(eq("guildId", guildId)).first();
 
         return (String) document.get("guildPrefix");
+    }
+
+    public static double getEventChance(long guildId, @Nonnull String event) {
+        MongoCollection collection = mongoDatabase.getCollection("config");
+        Document document = (Document) collection.find(eq("guildId", guildId)).first();
+
+        return (double) document.get(event);
+    }
+
+    public static void setEventChance(long guildId, @Nonnull String event, double chance) {
+        MongoCollection collection = mongoDatabase.getCollection("config");
+        collection.updateOne(eq("guildId", guildId), new Document("$set", new Document(event, chance)));
     }
 
     /**
