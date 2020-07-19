@@ -22,14 +22,18 @@
       "***honk**",
       "**Honk honk**",
       "honk honk am goose",
-      "*honk honk am goose*"
+      "*honk honk am goose*",
+      "<:goose:734499332572839997>",
+      "<:goose3:734499836149366825>",
+      "<:gooseface:734499836421734452>",
+      "<:goose2:734499838279811160>"
 
     ],
     "eventDelete": [
       "***HJOONK***  Bad message *honk*",
-      "MESS WITH THE HONK YOU GET HE BONK",
-      "**MESS WITH THE HONK YOU GET HE BONK**",
-      "*MESS WITH THE HONK YOU GET HE BONK*"
+      "MESS WITH THE HONK YOU GET THE BONK",
+      "**MESS WITH THE HONK YOU GET THE BONK**",
+      "*MESS WITH THE HONK YOU GET THE BONK*"
     ]
   },
   "roleEvent" : {
