@@ -58,11 +58,11 @@ public class ConfigureCommand implements ICommand {
                     context.getChannel().sendMessageFormat("Chance for event `EVENT_MESSAGE_REACT` updated to `%s`", chance).queue();
                     break;
                 default:
-                    context.getChannel().sendMessageFormat("Unknown event! `%s`", context.getArgs().get(1)).queue();
+                    context.getChannel().sendMessageFormat("Unknown event! `%s`\nAvailable events: `EVENT_MESSAGE_SEND`, `EVENT_MESSAGE_REACT`, `EVENT_MESSAGE_DELETE`, `EVENT_USER_VC_DISCONNECT`, `EVENT_ROLE_DELETE`", context.getArgs().get(1)).queue();
                     break;
             }
         } else {
-            context.getChannel().sendMessageFormat("Cannot convert `%s` to `action`!", context.getArgs().get(0)).queue();
+            context.getChannel().sendMessageFormat("Cannot convert `%s` to `action`!\nAvailable actions: `events`", context.getArgs().get(0)).queue();
         }
     }
 

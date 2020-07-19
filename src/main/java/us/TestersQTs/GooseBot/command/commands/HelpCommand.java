@@ -17,7 +17,7 @@ public class HelpCommand implements ICommand {
         embedBuilder.setAuthor(context.getAuthor().getAsTag(), null, context.getAuthor().getAvatarUrl());
         embedBuilder.setDescription("**Help | WIP**");
         embedBuilder.addField("!prefix", "Usage !prefix [str:new prefix]", false);
-        embedBuilder.addField("!configure", "Usage !configure [str:setting] [str:event] [double:new value]", false);
+        embedBuilder.addField("!configure", "Usage !configure [str:action] [str:event] [double:new value]", false);
 
         embedBuilder.setFooter("Requested by: " + context.getAuthor().getAsTag());
         embedBuilder.setTimestamp(Instant.now());
