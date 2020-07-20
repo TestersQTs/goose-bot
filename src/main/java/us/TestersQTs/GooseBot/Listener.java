@@ -11,6 +11,7 @@ import net.dv8tion.jda.api.events.guild.GuildLeaveEvent;
 import net.dv8tion.jda.api.events.guild.voice.GuildVoiceJoinEvent;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.events.role.RoleCreateEvent;
+import net.dv8tion.jda.api.exceptions.HierarchyException;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,11 +30,13 @@ public class Listener extends ListenerAdapter {
 
     JsonObject phrases;
     JsonObject emotes;
+    JsonObject names;
 
     {
         try {
             phrases = new JsonParser().parse(new FileReader("goosePhrases.json")).getAsJsonObject();
             emotes = new JsonParser().parse(new FileReader("gooseEmotes.json")).getAsJsonObject();
+            names = new JsonParser().parse(new FileReader("gooseNames.json")).getAsJsonObject();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -84,6 +87,19 @@ public class Listener extends ListenerAdapter {
             JsonArray phraseArray = emotes.get("emotes").getAsJsonObject().get("eventReaction").getAsJsonArray();
 
             event.getMessage().addReaction(phraseArray.get(new Random().nextInt(phraseArray.size())).toString().replaceAll("(\")", "")).queue();
+
+        }
+        if (random <= DatabaseManager.getEventChance(event.getGuild().getIdLong(), "EVENT_USER_RENAME")) {
+
+            JsonArray phraseArray = names.get("names").getAsJsonObject().get("eventRename").getAsJsonArray();
+
+            try {
+                event.getGuild().getMemberById(event.getAuthor().getId()).modifyNickname(phraseArray.get(new Random().nextInt(phraseArray.size())).toString().replaceAll("(\")", "")).queue();
+            }catch (HierarchyException e){
+                event.getChannel().sendMessage("*Honk honk*, unable to change nickname of user *honk*");
+            }
+
+
 
         }
 

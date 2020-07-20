@@ -46,6 +46,7 @@ public class DatabaseManager {
         docSettings.append("EVENT_USER_VC_DISCONNECT", 0.35);
         docSettings.append("EVENT_MESSAGE_DELETE", 0.05);
         docSettings.append("EVENT_ROLE_DELETE", 0.33);
+        docSettings.append("EVENT_USER_RENAME", 0.1);
 
 
         settings.insertOne(docSettings);
