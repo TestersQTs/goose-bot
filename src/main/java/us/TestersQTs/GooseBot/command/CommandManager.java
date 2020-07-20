@@ -3,7 +3,6 @@ package us.TestersQTs.GooseBot.command;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import us.TestersQTs.GooseBot.Config;
 import us.TestersQTs.GooseBot.command.commands.*;
 import us.TestersQTs.GooseBot.database.DatabaseManager;
 

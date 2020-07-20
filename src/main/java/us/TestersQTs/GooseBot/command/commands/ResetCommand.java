@@ -1,12 +1,8 @@
 package us.TestersQTs.GooseBot.command.commands;
 
-import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import us.TestersQTs.GooseBot.command.CommandContext;
 import us.TestersQTs.GooseBot.command.ICommand;
-
-import java.awt.*;
-import java.time.Instant;
 
 import static us.TestersQTs.GooseBot.database.DatabaseManager.addGuildToDatabase;
 import static us.TestersQTs.GooseBot.database.DatabaseManager.removeGuildFromDatabase;
@@ -20,8 +16,8 @@ public class ResetCommand implements ICommand {
             return;
         }
 
-        removeGuildFromDatabase(Long.parseLong(context.getGuild().getId()));
-        addGuildToDatabase(Long.parseLong(context.getGuild().getId()), context.getGuild().getName(), "!");
+        removeGuildFromDatabase(context.getGuild().getIdLong());
+        addGuildToDatabase(context.getGuild().getIdLong(), context.getGuild().getName(), "!");
         context.getChannel().sendMessageFormat("All configurations have been reset now.").queue();
 
     }

@@ -3,7 +3,6 @@ package us.TestersQTs.GooseBot.command.commands;
 import net.dv8tion.jda.api.EmbedBuilder;
 import us.TestersQTs.GooseBot.command.CommandContext;
 import us.TestersQTs.GooseBot.command.ICommand;
-import us.TestersQTs.GooseBot.database.DatabaseManager;
 
 import java.awt.*;
 import java.time.Instant;

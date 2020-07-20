@@ -10,10 +10,8 @@ public class PingCommand implements ICommand {
     public void handle(CommandContext context) {
         JDA jda = context.getJDA();
 
-        jda.getRestPing().queue((ping) -> {
-            context.getChannel()
-                    .sendMessageFormat("\uD83C\uDFD3 **PONG** \uD83C\uDFD3 \n**Rest ping:** %sms \n**WebSocket ping:** %sms", ping, jda.getGatewayPing()).queue();
-        });
+        jda.getRestPing().queue((ping) -> context.getChannel()
+                .sendMessageFormat("\uD83C\uDFD3 **PONG** \uD83C\uDFD3 \n**Rest ping:** %sms \n**WebSocket ping:** %sms", ping, jda.getGatewayPing()).queue());
     }
 
     @Override
