@@ -19,11 +19,16 @@ public class DatabaseManager {
     private static MongoClient mongoClient;
     private static MongoDatabase mongoDatabase;
 
-    public static void addGuildToDatabase(long guildId, @Nonnull String guildName, @Nonnull String prefix) {
+    /**
+     *
+     * Adds a new guild document to the MongoDB database when the bot joins a server
+     *
+     * @param guildId Guild ID returned by the getIdLong() method
+     * @param guildName Guild name returned by getName() method
+     * @param prefix User specified prefix
+     */
 
-        /*
-          Guild settings get saved first. (guildId, prefix etc)
-         */
+    public static void addGuildToDatabase(long guildId, @Nonnull String guildName, @Nonnull String prefix) {
 
         Document docGuilds = new Document("guildId", guildId);
         MongoCollection<Document> guilds = mongoDatabase.getCollection("guilds");
@@ -33,10 +38,6 @@ public class DatabaseManager {
         docGuilds.append("joined", Instant.now());
 
         guilds.insertOne(docGuilds);
-
-        /*
-          Event changes get created.
-         */
 
         Document docSettings = new Document("guildId", guildId);
         MongoCollection<Document> settings = mongoDatabase.getCollection("config");
@@ -52,6 +53,13 @@ public class DatabaseManager {
         settings.insertOne(docSettings);
     }
 
+    /**
+     *
+     * Removed a guild from the MongoDB database when the bot leaves a server
+     *
+     * @param guildId Guild ID returned by the getIdLong() method
+     */
+
     public static void removeGuildFromDatabase(long guildId) {
         MongoCollection<Document> guilds = mongoDatabase.getCollection("guilds");
         Document docGuilds = guilds.find(eq("guildId", guildId)).first();
@@ -64,10 +72,26 @@ public class DatabaseManager {
         settings.deleteOne(Objects.requireNonNull(docSettings));
     }
 
+    /**
+     *
+     * Updates the guildPrefix value for the given guild in the MongoDB database
+     *
+     * @param guildId Guild ID returned by the getIdLong() method
+     * @param prefix User specified prefix
+     */
+
     public static void updatePrefix(long guildId, @Nonnull String prefix) {
         MongoCollection<Document> collection = mongoDatabase.getCollection("guilds");
         collection.updateOne(eq("guildId", guildId), new Document("$set", new Document("guildPrefix", prefix)));
     }
+
+    /**
+     *
+     * Gets the guildPrefix value from our MongoDB database for the specified guilds
+     *
+     * @param guildId Guild ID returned by the getIdLong() method
+     * @return Returned prefix for the given guild
+     */
 
     public static String getPrefix(long guildId) {
         MongoCollection<Document> collection = mongoDatabase.getCollection("guilds");
@@ -76,12 +100,31 @@ public class DatabaseManager {
         return (String) Objects.requireNonNull(document).get("guildPrefix");
     }
 
+    /**
+     *
+     * Gets the event chance (double) for the specified event
+     *
+     * @param guildId Guild ID returned by the getIdLong() method
+     * @param event Event name
+     * @see us.TestersQTs.GooseBot.command.commands.ConfigureCommand for all events
+     * @return Returned event chance
+     */
+
     public static double getEventChance(long guildId, @Nonnull String event) {
         MongoCollection<Document> collection = mongoDatabase.getCollection("config");
         Document document = collection.find(eq("guildId", guildId)).first();
 
         return (double) Objects.requireNonNull(document).get(event);
     }
+
+    /**
+     *
+     * Updates the event chance for the specified event for the given guild
+     *
+     * @param guildId Guild ID returned by the getIdLong() method
+     * @param event Specified event that should be updated
+     * @param chance New updated chance value
+     */
 
     public static void setEventChance(long guildId, @Nonnull String event, double chance) {
         MongoCollection<Document> collection = mongoDatabase.getCollection("config");

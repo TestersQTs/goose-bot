@@ -1,9 +1,12 @@
 package us.TestersQTs.GooseBot.command.commands;
 
 import net.dv8tion.jda.api.Permission;
+import org.jetbrains.annotations.NotNull;
 import us.TestersQTs.GooseBot.command.CommandContext;
 import us.TestersQTs.GooseBot.command.ICommand;
 import us.TestersQTs.GooseBot.database.DatabaseManager;
+
+import java.util.*;
 
 public class ConfigureCommand implements ICommand {
 
@@ -73,5 +76,10 @@ public class ConfigureCommand implements ICommand {
     @Override
     public String getName() {
         return "configure";
+    }
+
+    @Override
+    public List<String> getAliases() {
+        return Arrays.asList("config", "setup");
     }
 }
