@@ -9,9 +9,9 @@
 
 ### 🌐 [Add the bot to your server | Bot is still WIP](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 
-### 📄 [Command list](https://github.com/TestersQTs/goose-bot/blob/master/CommandList.md)
+### 📄 [Command list](https://github.com/TestersQTs/goose-bot/blob/master/md/CommandList.md)
 
-### 🖥️ [Selfhosting setup](https://github.com/TestersQTs/goose-bot/blob/master/Selfhostbot.md)
+### 🖥️ [Selfhosting setup](https://github.com/TestersQTs/goose-bot/blob/master/md/Selfhostbot.md)
 
 ## Author(s)
 
