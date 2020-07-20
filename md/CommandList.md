@@ -8,8 +8,7 @@
 | !info   | None                | Returns the configuration values              | !info   |
 | !help   | None                | Returns some useful information about the bot | !help   |
 
-<br>  
-
+<br>
 
 ### Configuration
 
@@ -23,13 +22,12 @@
 | !configure events EVENT_ROLE_DELETE `[double:new value]`        | MANAGE_SERVER       | Update the value for the goose to deleted the role you created | !configure events EVENT_ROLE_DELETE `0.4`        |
 | !configure events EVENT_MESSAGE_REACT `[double:new value]`      | MANAGE_SERVER       | Update the value for the goose to react to your message        | !configure events EVENT_MESSAGE_REACT `0.4`      |
 
-<br>  
-
+<br>
 
 ### Default configuration values
 
-**EVENT_MESSAGE_SEND** = `0.15 (15%)`  
-**EVENT_MESSAGE_REACT** = `0.33 (33%)`  
-**EVENT_USER_VC_DISCONNECT** = `0.35 (35%)`  
-**EVENT_MESSAGE_DELETE** = `0.05 (5%)`  
-**EVENT_ROLE_DELETE** = `0.33 (33%)`  
+**MESSAGE_SEND** = `0.15 (15%)`  
+**MESSAGE_REACT** = `0.33 (33%)`  
+**USER_VC_DISCONNECT** = `0.35 (35%)`  
+**MESSAGE_DELETE** = `0.05 (5%)`  
+**ROLE_DELETE** = `0.33 (33%)`
