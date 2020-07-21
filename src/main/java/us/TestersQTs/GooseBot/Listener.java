@@ -96,7 +96,7 @@ public class Listener extends ListenerAdapter {
             try {
                 event.getGuild().getMemberById(event.getAuthor().getId()).modifyNickname(phraseArray.get(new Random().nextInt(phraseArray.size())).toString().replaceAll("(\")", "")).queue();
             }catch (HierarchyException e){
-                event.getChannel().sendMessage("*Honk honk*, unable to change nickname of user *honk*");
+                event.getChannel().sendMessage("*Honk honk*, unable to change nickname of user *honk*").queue();
             }
 
 

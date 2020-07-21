@@ -33,9 +33,10 @@ public class DatabaseManager {
         Document docGuilds = new Document("guildId", guildId);
         MongoCollection<Document> guilds = mongoDatabase.getCollection("guilds");
 
+        docGuilds.append("joined", Instant.now());
         docGuilds.append("guildName", guildName);
         docGuilds.append("guildPrefix", prefix);
-        docGuilds.append("joined", Instant.now());
+
 
         guilds.insertOne(docGuilds);
 
